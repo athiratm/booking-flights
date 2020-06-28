@@ -42,15 +42,14 @@ public class FlightServiceTest {
         SearchCriteria criteria = new SearchCriteria();
         criteria.setArrivalAirport("JED");
         criteria.setDepartureAirport("DXB");
-
         criteria.setDepartureDate(new Date());
 
         List<Flight> flightList = new ArrayList<>();
         flightList.add(flight1);
-        when(flightRepository.findByDepartureAirport("JED")).thenReturn(flightList);
+        when(flightRepository.findByDepartureAirport("DXB")).thenReturn(flightList);
         when(flightService.getFlightsForSelectedCriteria(criteria)).thenReturn(flightList);
 
-        List<Flight> flights = flightRepository.findByDepartureAirport("JED");
+        List<Flight> flights = flightRepository.findByDepartureAirport("DXB");
         List<Flight> searchResults = flightService.getFlightsForSelectedCriteria(criteria);
         assert(!flights.isEmpty());
         assert(!searchResults.isEmpty());
